@@ -2,10 +2,16 @@
 version: '3.0'
 services:
   web:
-    # TODO: image, ports and redis dependency
+    image: matix522/io-lab-docker-ci-public
+    # TODO: build context, ports and redis dependency
+    volumes:
+      - .:/code
+    ports:
+      - 5000:5000
     environment:
+      # Makes flask to reload code on change
+      FLASK_ENV: development
       REDIS_HOST: redis
       REDIS_PORT: 6379
   redis:
     image: redis:6.0-rc3
-    # TODO: persistence for redis. You need to persist /data directory.
