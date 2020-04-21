@@ -39,12 +39,15 @@ image:
 		--build-arg SCHEMA_BUILD_DATE="$(SCHEMA_BUILD_DATE)" \
 		--build-arg SCHEMA_BUILD_VERSION="$(SCHEMA_BUILD_VERSION)" \
 		--build-arg SCHEMA_CMD="$(SCHEMA_CMD)" \
-	
+		. -t matix522/io-lab-docker-ci-public
+		docker tag matix522/io-lab-docker-ci-public matix522/io-lab-docker-ci-public:v1.0
+
   # TODO: last part of this command that tags just built image with a specyfic tag
 	
 push: image
 	# TODO: two commands, first pushes the latest image, second pushes the image tagged with specyfic tag
-	
+	docker tag  matix522/io-lab-docker-ci-public:latest  matix522/io-lab-docker-ci-public:latest
+	docker push  matix522/io-lab-docker-ci-public
 clean:
 
 .PHONY: clean image push all
